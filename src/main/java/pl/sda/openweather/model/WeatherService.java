@@ -1,15 +1,12 @@
 package pl.sda.openweather.model;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.io.IOException;
 import java.net.URL;
-import java.util.Scanner;
 
 public class WeatherService {
 
-    private String finalURL;
-
+    private String finalURL ="http://api.apixu.com/v1/current.json?key=8e42af245b4240d7bc192407191002&q=";
     private String url;
     private String apiKey;
 
@@ -19,30 +16,21 @@ public class WeatherService {
 
     }
 
-//
-//    WeatherService weatherService = new WeatherService("http://api.apixu.com/v1/current.json",
-//            "KLUCZ API");
 
+    public void getCityWeather(String city)  {
 
-    public void getCityWeather (String city) throws IOException {
-
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Podaj nazwę miasta");
-        city = scanner.nextLine();
-        city = apiKey;
-
-        finalURL=url+ "="+city;
-
-        URL jsonURL = new URL (finalURL);
-        ObjectMapper objectMapper = new ObjectMapper();
-        Weather weather = null;
         try {
-            weather = objectMapper.readValue(jsonURL, Weather.class);
+            URL jsonURL = new URL(finalURL + city);
+
+            ObjectMapper objectMapper = new ObjectMapper();
+            Weather weather = objectMapper.readValue(jsonURL, Weather.class);
+            System.out.println( weather.getLocation().getName() + " - "
+                    + weather.getCurrent().getTemp_c() + " C");
+
+
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println(weather);
-
     }
 
     @Override
