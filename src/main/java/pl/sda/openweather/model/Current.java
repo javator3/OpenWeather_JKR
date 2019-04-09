@@ -24,12 +24,15 @@ public class Current {
     private float vis_km;
     private float vis_miles;
     private float uv;
+    private double gust_mph;
+    private double gust_kph;
 
 
     public Current(Condition condition, String last_updated_epoch, String last_updated, float temp_c, float temp_f,
                    String is_day, float wind_mph, float wind_kph, float wind_degree, String wind_dir,
                    float pressure_mb, float pressure_in, float precip_mm, float precip_in, float humidity,
-                   float cloud, float feelslike_c, float feelslike_f, float vis_km, float vis_miles, float uv) {
+                   float cloud, float feelslike_c, float feelslike_f, float vis_km, float vis_miles, float uv,
+                   double gust_mph,double gust_kph) {
         this.condition = condition;
         this.last_updated_epoch = last_updated_epoch;
         this.last_updated = last_updated;
@@ -51,6 +54,9 @@ public class Current {
         this.vis_km = vis_km;
         this.vis_miles = vis_miles;
         this.uv = uv;
+        this.gust_mph = gust_mph;
+        this.gust_mph = gust_kph;
+
     }
 
     public Current(){}
@@ -224,6 +230,22 @@ public class Current {
         this.uv = uv;
     }
 
+    public double getGust_mph() {
+        return gust_mph;
+    }
+
+    public void setGust_mph(double gust_mph) {
+        this.gust_mph = gust_mph;
+    }
+
+    public double getGust_kph() {
+        return gust_kph;
+    }
+
+    public void setGust_kph(double gust_kph) {
+        this.gust_kph = gust_kph;
+    }
+
     @Override
     public String toString() {
         return "Current{" +
@@ -248,6 +270,8 @@ public class Current {
                 ", vis_km=" + vis_km +
                 ", vis_miles=" + vis_miles +
                 ", uv=" + uv +
+                ", gust_mph=" + gust_mph +
+                ", gust_kph=" + gust_kph +
                 '}';
     }
 }
